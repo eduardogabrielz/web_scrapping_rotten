@@ -1,0 +1,7 @@
+web scraping do rotten tomatoes
+retorna:
+	nome do filme
+	informações do filme
+	nome do diretor
+	sinopse
+	criticas da audiencia e critica
