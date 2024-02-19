@@ -4,33 +4,33 @@ from time import sleep
 
 def nome_filme(soup):
    achar = soup.find('h1').text
-   print('\033[31m'+achar.center(150)+'\033[m')
+   print('\033[31m'+achar.center(100)+'\033[m')
 
 def info_filme(soup):
-   achar = soup.find('p', attrs={'slot':'info','class':'scoreboard__info'}).text
-   print('\033[35m'+achar.center(150)+'\033[m')
+   achar = soup.find('p', attrs={'data-qa':'score-panel-subtitle', 'slot':'info'}).text
+   print('\033[35m'+achar.center(100)+'\033[m')
 
 def diretor(soup):
     achar_diretor = soup.find('span', attrs={'data-qa': 'movie-info-director'})
     if achar_diretor == None:
         achar_diretor_link = soup.find('a', attrs={'data-qa': 'movie-info-director'})
-        print('\033[97m\n'+achar_diretor_link.text.center(150)+'\n\033[m')
+        print('\033[97m\n'+achar_diretor_link.text.center(100)+'\n\033[m')
     else:
-        print('\033[97m\n'+achar_diretor.text.center(150)+'\n\033[m')
+        print('\033[97m\n'+achar_diretor.text.center(100)+'\n\033[m')
 
 def sinopse(soup):
-    achar_content = soup.find('div', attrs={'data-qa': 'movie-info-synopsis'}).text
+    achar_content = soup.find('p', attrs={'data-qa': 'movie-info-synopsis','slot':'content'}).text
     print('\033[36m'+achar_content+'\033[m')
 
 def criticos_audiencia(soup):
     achar_critico = soup.find('a', attrs={'data-qa':'critic-reviews-top-filter'})
     achar_audiencia = soup.find('a', attrs={'data-qa':'critic-reviews-all-filter'})
     if achar_critico != None:
-        print('\033[39m'+ 'criticos'.upper() + '\033[m: ' + 'https://www.rottentomatoes.com' + achar_critico.get('href'))
+        print('\033[39m'+ 'criticos'.upper() + '\033[m: ' + '\033[96m\n' + 'https://www.rottentomatoes.com' + achar_critico.get('href') + '\033[m')
     else:
         print('\033[31m'+ 'não tem critica dos criticos!'.upper() + '\033[m')
     if achar_audiencia != None:
-        print('\033[39m' + 'audiencia'.upper() + '\033[m: ' + 'https://www.rottentomatoes.com' + achar_audiencia.get('href'))
+        print('\033[39m' + 'audiencia'.upper() + '\033[m: ' + '\033[96m\n' + 'https://www.rottentomatoes.com' + achar_audiencia.get('href') + '\033[m')
     else:
         print('\033[31m'+ 'não tem critica da audiencia!'.upper() + '\033[m')
 
@@ -38,8 +38,7 @@ if __name__ == '__main__':
    base_url = 'https://www.rottentomatoes.com/'
 
    data = [
-       {  'filme' : 'terrifier'
-       }, {'filme': 'drishyam_2_2022'
+     {'filme': 'drishyam_2_2022'
        }, {'filme': 'black_panther_wakanda_forever'
        }, {'filme': 'bad_axe'
        }, {'filme': 'taurus'
